@@ -150,3 +150,87 @@ wp core download --skip-content --force
 Or:
 
 backup=WP_`date +%s` && mkdir $backup && mv wp-admin $backup && mv wp-includes $backup && mv *.php $backup && wget
+How to Restore the WordPress System Files
+What to do if WordPress system files are damaged
+Updated this week
+Table of contents
+If your WordPress system files are damaged, and want to try keeping the most recent changes to your website, you restore the WordPress system files only. Here are two alternative methods: 
+
+Using SSH 
+
+Using File Manager or FTP
+
+Whichever option you choose, you do not need to make any changes to the database. The SSH option is the easiest as you would only need to run one command, and is available on all hosting plans except for Shared Single and WordPress Starter.
+
+ 
+
+Option 1 - Restoring WordPress System Files via SSH
+Step 1 - Connect via SSH
+Connect to your account via SSH and open the directory where you installed WordPress. For most domains it will be the public_html folder, so to reach the path use the following command:
+
+ 
+
+cd domains/domain.tld/public_html
+ 
+
+Replacing domain.tld with your domain.
+
+ 
+
+Step 2 - Restore files 
+Once there, run the following command: 
+
+ 
+
+wp core download --skip-content --force
+ 
+
+When the process is completed, check your website on incognito mode, it should be working now.
+
+ 
+
+Option 2 - Restoring WordPress System Files via FTP or File Manager
+Step 1 - Preparation
+First, create a fresh backup of your website. You can do that by using the backup tool on hPanel or by connecting via FTP and downloading all your website's files. 
+
+  
+
+Step 2 - Download the Official WordPress System Files
+Go to WordPress.org and download the archive with the core files of WordPress. That is, a clean installation that does not include any plugins or themes. Make sure to download the same version from your current installation, be it the latest version or an older one.
+
+ 
+
+Once done, extract the files on your device. The result will look like this:
+
+ 
+
+
+Step 3 - Upload the WordPress Files to Your Hosting
+Next, upload these files and folders except the wp-config folder to your hosting.
+
+Open Websites → Manage, search for File Manager on the sidebar and click on it:
+
+ 
+
+
+
+Make sure you are in the directory where WordPress is installed and click Upload:
+
+ 
+
+
+Select the WordPress files and folders on your device, excluding the wp-config folder. When asked to, click on Replace:
+
+ 
+
+
+Alternatively, if you're using FileZilla (or another FTP client of your choice), upload the WordPress files except the wp-config folder and, when asked, choose Overwrite: 
+
+ 
+
+
+Once the uploading process is done, you can check your website in incognito mode of your browser. It should be working, and your content will be saved!
+
+ 
+
+If you still find your website not working after doing all the steps, you can restore your website from a backup. It will revert the files and database to their previous state.
